@@ -830,12 +830,12 @@ def handle_new_judge(call):
                     "💬 Ответить", callback_data=f"reply_to_{user_id}"
                 )
             )
-            full_text = f"Новая заявка на судейство\!\n{user_info}"
+            full_text = f"Новая заявка на судейство!\n{user_info}"
             bot.send_message(CONTEST_CHAT_ID, full_text, reply_markup=markup)
 
             bot.send_message(
                 user_id,
-                "✅ Заявка успешно отправлена\!",
+                "✅ Заявка успешно отправлена!",
                 reply_markup=Menu.back_user_only_main_menu(),
             )
         else:

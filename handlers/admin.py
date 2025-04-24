@@ -324,7 +324,6 @@ def handle_show_participants(call):
         text=text,
         chat_id=call.message.chat.id,
         message_id=call.message.message_id,
-        parse_mode="MarkdownV2",
         reply_markup=Menu.adm_stat_menu(),
     )
 
@@ -346,13 +345,12 @@ def handle_show_judges(call):
 
     text = "📋 Список судей:\n\n"
     for j in judges:
-        text += f"👤 {j[0]}\n" f"🗨️ @{j[1]}\n" f"────────────────\n"
+        text += f"👤 {j[0]}\n🗨️ @{j[1]}\n────────────────\n"
 
     bot.edit_message_text(
         text=text,
         chat_id=call.message.chat.id,
         message_id=call.message.message_id,
-        parse_mode="MarkdownV2",
         reply_markup=Menu.adm_stat_menu(),
     )
 
@@ -642,7 +640,7 @@ def reject_work(call):
         submission_id = int(call.data.replace(ButtonCallback.ADM_REJECT, ""))
         msg = bot.send_message(
             call.message.chat.id,
-            "Введите причину отклонения:",
+            "Введите причину отклонения в ответ на это сообщение, то есть реплаем:",
         )
         bot.register_for_reply(msg, lambda m: process_rejection(m, submission_id))
 
@@ -693,7 +691,7 @@ def handle_reply_button(call):
 
         msg = bot.send_message(
             call.message.chat.id,  # Отвечаем в тот же чат
-            f"✍️ Введите ответ для пользователя:\n🚫 Для отмены используйте /cancel_adm",
+            f"✍️ Введите ответ для пользователя в ответ на это сообщение, то есть реплаем:\n🚫 Для отмены используйте /cancel_adm",
         )
         
         # Регистрируем следующий шаг с явным указанием чата
